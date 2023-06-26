@@ -22,7 +22,7 @@ namespace EventoApi.Controllers
         }
 
         // GET: api/Tickets
-        [HttpGet("GetTickets")]
+        [HttpGet("/Tickets/GetTikets")]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTickets()
         {
           if (_context.Tickets == null)
@@ -33,7 +33,7 @@ namespace EventoApi.Controllers
         }
 
         // GET: api/Tickets/5
-        [HttpGet("GetTickets{id}")]
+        [HttpGet("/Titckets/GetTickets{id}")]
         public async Task<ActionResult<Ticket>> GetTicket(int id)
         {
           if (_context.Tickets == null)
@@ -52,7 +52,7 @@ namespace EventoApi.Controllers
 
         // PUT: api/Tickets/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("PutTickets{id}")]
+        [HttpPut("/Tickets/PutTickets{id}")]
         public async Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
             if (id != ticket.Id)
@@ -83,7 +83,7 @@ namespace EventoApi.Controllers
 
         // POST: api/Tickets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("PostTickets")]
+        [HttpPost]
         public async Task<ActionResult<Ticket>> PostTicket(Ticket ticket)
         {
           if (_context.Tickets == null)
@@ -97,7 +97,7 @@ namespace EventoApi.Controllers
         }
 
         // DELETE: api/Tickets/5
-        [HttpDelete("DeleteTickets{id}")]
+        [HttpDelete("/Tickets/DeleteTicket{id}")]
         public async Task<IActionResult> DeleteTicket(int id)
         {
             if (_context.Tickets == null)

@@ -14,4 +14,9 @@ public partial class Ticket
     public int Cantidad { get; set; }
 
     public string Area { get; set; } = null!;
+
+    public string NombreUsuario { get; set; } = string.Empty!;
+
+    public string NombreEvento { get; set; } = string.Empty!;
+
 }

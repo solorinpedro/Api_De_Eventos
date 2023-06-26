@@ -30,9 +30,7 @@ public partial class Contexto : DbContext
         modelBuilder.Entity<Evento>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Evento__3213E83FF4FDC094");
-
             entity.ToTable("Evento");
-
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Imagen)
                   .HasMaxLength(200)
@@ -49,6 +47,8 @@ public partial class Contexto : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
+            entity.Property(e => e.CantidadTicket)
+                .HasColumnName("CantidadTicket");
         });
 
         modelBuilder.Entity<Ticket>(entity =>
@@ -66,6 +66,14 @@ public partial class Contexto : DbContext
             entity.Property(e => e.Precio)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("precio");
+            entity.Property(e => e.NombreEvento)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasColumnName("nombreevento");
+            entity.Property(e => e.NombreUsuario)
+            .HasMaxLength(60)
+            .IsUnicode(false)
+            .HasColumnName("nombreusuario");
         });
 
         modelBuilder.Entity<Usuario>(entity =>

@@ -16,4 +16,6 @@ public partial class Evento
     public string Nombre { get; set; } = null!;
 
     public string Lugar { get; set; } = null!;
+
+    public int CantidadTicket { get; set; }
 }

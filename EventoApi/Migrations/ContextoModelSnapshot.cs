@@ -31,6 +31,10 @@ namespace EventoApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CantidadTicket")
+                        .HasColumnType("int")
+                        .HasColumnName("CantidadTicket");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("date")
                         .HasColumnName("fecha");
@@ -81,6 +85,20 @@ namespace EventoApi.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int")
                         .HasColumnName("cantidad");
+
+                    b.Property<string>("NombreEvento")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(60)")
+                        .HasColumnName("nombreevento");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(60)")
+                        .HasColumnName("nombreusuario");
 
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(10, 2)")

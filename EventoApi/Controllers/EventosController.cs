@@ -22,7 +22,7 @@ namespace EventoApi.Controllers
         }
 
         // GET: api/Eventos
-        [HttpGet("GetEventos")]
+        [HttpGet("/Eventos/GetEventos")]
         public async Task<ActionResult<IEnumerable<Evento>>> GetEventos()
         {
           if (_context.Eventos == null)
@@ -33,7 +33,7 @@ namespace EventoApi.Controllers
         }
 
         // GET: api/Eventos/5
-        [HttpGet("GetEventos{id}")]
+        [HttpGet("/Eventos/GetEventos{id}")]
         public async Task<ActionResult<Evento>> GetEvento(int id)
         {
           if (_context.Eventos == null)
@@ -52,7 +52,7 @@ namespace EventoApi.Controllers
 
         // PUT: api/Eventos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("PutEventos{id}")]
+        [HttpPut("/Eventos/PutEventos{id}")]
         public async Task<IActionResult> PutEvento(int id, Evento evento)
         {
             if (id != evento.Id)
@@ -83,7 +83,7 @@ namespace EventoApi.Controllers
 
         // POST: api/Eventos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("PostEvento")]
+        [HttpPost("/Eventos/PostEventos")]
         public async Task<ActionResult<Evento>> PostEvento(Evento evento)
         {
           if (_context.Eventos == null)
@@ -97,7 +97,7 @@ namespace EventoApi.Controllers
         }
 
         // DELETE: api/Eventos/5
-        [HttpDelete("DeleteEvento{id}")]
+        [HttpDelete("/Eventos/DeleteEvento{id}")]
         public async Task<IActionResult> DeleteEvento(int id)
         {
             if (_context.Eventos == null)
