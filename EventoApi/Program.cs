@@ -1,4 +1,5 @@
 using EventoApi.Dal;
+using EventoApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,12 @@ var connectionString = builder.Configuration.GetConnectionString("ConStr");
 builder.Services.AddDbContext<Contexto>(options =>
     options.UseSqlServer(connectionString)
     );
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new ConvertirFecha());
+    });
 
 var app = builder.Build();
 
