@@ -20,8 +20,6 @@ public partial class Contexto : DbContext
 
     public virtual DbSet<Ticket> Tickets { get; set; }
 
-    public virtual DbSet<Usuario> Usuarios { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=EventoTicketDb.mssql.somee.com;Database=EventoTicketDb;Trusted_Connection=false; User id=psolorin_SQLLogin_1; pwd=rr7l319qcp; encrypt=false;persist security info=False;");
 
@@ -75,34 +73,19 @@ public partial class Contexto : DbContext
             .IsUnicode(false)
             .HasColumnName("nombreusuario");
         });
-
-        modelBuilder.Entity<Usuario>(entity =>
+        modelBuilder.Entity<Ticket>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F9E320C8A");
+            entity.Property(e => e.EventoId).HasColumnName("EventoId"); 
 
-            entity.ToTable("Usuario");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Apellido)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("apellido");
-            entity.Property(e => e.Email)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("email");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("nombre");
-            entity.Property(e => e.Password)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("password");
+            entity.HasOne(e => e.Evento) 
+                .WithMany()
+                .HasForeignKey(e => e.EventoId)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
 }

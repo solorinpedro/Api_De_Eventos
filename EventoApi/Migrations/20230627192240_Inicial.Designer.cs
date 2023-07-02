@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventoApi.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20230626022521_Inciaal")]
-    partial class Inciaal
+    [Migration("20230627192240_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,6 +89,10 @@ namespace EventoApi.Migrations
                         .HasColumnType("int")
                         .HasColumnName("cantidad");
 
+                    b.Property<int>("EventoId")
+                        .HasColumnType("int")
+                        .HasColumnName("EventoId");
+
                     b.Property<string>("NombreEvento")
                         .IsRequired()
                         .HasMaxLength(60)
@@ -110,50 +114,20 @@ namespace EventoApi.Migrations
                     b.HasKey("Id")
                         .HasName("PK__Ticket__3213E83FA4B3483D");
 
+                    b.HasIndex("EventoId");
+
                     b.ToTable("Ticket", (string)null);
                 });
 
-            modelBuilder.Entity("EventoApi.Models.Usuario", b =>
+            modelBuilder.Entity("EventoApi.Models.Ticket", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
+                    b.HasOne("EventoApi.Models.Evento", "Evento")
+                        .WithMany()
+                        .HasForeignKey("EventoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("apellido");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("email");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("nombre");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("password");
-
-                    b.HasKey("Id")
-                        .HasName("PK__Usuario__3213E83F9E320C8A");
-
-                    b.ToTable("Usuario", (string)null);
+                    b.Navigation("Evento");
                 });
 #pragma warning restore 612, 618
         }

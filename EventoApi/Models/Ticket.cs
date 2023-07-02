@@ -19,4 +19,7 @@ public partial class Ticket
 
     public string NombreEvento { get; set; } = string.Empty!;
 
+    public int EventoId { get; set; }
+
+    public Evento Evento { get; set; }
 }

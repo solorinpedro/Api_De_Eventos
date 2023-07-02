@@ -97,7 +97,7 @@ namespace EventoApi.Controllers
         }
 
         // DELETE: api/Eventos/5
-        [HttpDelete("/Eventos/DeleteEvento{id}")]
+        [HttpDelete("/Eventos/DeleteEventos{id}")]
         public async Task<IActionResult> DeleteEvento(int id)
         {
             if (_context.Eventos == null)

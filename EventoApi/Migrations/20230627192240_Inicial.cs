@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EventoApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Inciaal : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,41 +38,34 @@ namespace EventoApi.Migrations
                     cantidad = table.Column<int>(type: "int", nullable: false),
                     area = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     nombreusuario = table.Column<string>(type: "varchar(60)", unicode: false, maxLength: 60, nullable: false),
-                    nombreevento = table.Column<string>(type: "varchar(60)", unicode: false, maxLength: 60, nullable: false)
+                    nombreevento = table.Column<string>(type: "varchar(60)", unicode: false, maxLength: 60, nullable: false),
+                    EventoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Ticket__3213E83FA4B3483D", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Ticket_Evento_EventoId",
+                        column: x => x.EventoId,
+                        principalTable: "Evento",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Usuario",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nombre = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    apellido = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    email = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    password = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Usuario__3213E83F9E320C8A", x => x.id);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_Ticket_EventoId",
+                table: "Ticket",
+                column: "EventoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Evento");
-
-            migrationBuilder.DropTable(
                 name: "Ticket");
 
             migrationBuilder.DropTable(
-                name: "Usuario");
+                name: "Evento");
         }
     }
 }

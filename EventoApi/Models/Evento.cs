@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EventoApi.Models;
 
@@ -11,6 +13,7 @@ public partial class Evento
 
     public string Imagen { get; set; } = null!;
 
+    [JsonConverter(typeof(ConvertirFecha))]
     public DateTime Fecha { get; set; }
 
     public string Nombre { get; set; } = null!;
@@ -19,3 +22,4 @@ public partial class Evento
 
     public int CantidadTicket { get; set; }
 }
+
